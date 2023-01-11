@@ -9,5 +9,4 @@ for i in range(1,n+1):
         else:
             pd[i][j] = max(v + pd[i-1][j-w], pd[i-1][j])
 
-print(pd)
 print(max(map(max,pd)))
