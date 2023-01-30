@@ -21,6 +21,7 @@ for _ in range(t):
         except:
             print("error")
     else:
+        input()
         if "D" in func:
             print("error")
         else:
