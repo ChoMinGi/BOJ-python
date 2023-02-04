@@ -2,32 +2,35 @@ import sys
 
 k = int(input())
 draw = []
+w = 0
+b = 0
 
 for _ in range(k):
-    draw.append(list(map(int, sys.stdin.readline().split())))
+    draw += list(map(int, sys.stdin.readline().split()))
+print(draw)
 
 
-def divi(list, k):
+def divi(a):
     res = []
     for i in range(2):
         for j in range(2):
             td = []
-            for l in range(k // 2):
-                td += list[4 * i + l][4 * j : 4 * (j + 1)]
+            for l in range(len(a) // 2):
+                td += a[4 * i + l][4 * j : 4 * (j + 1)]
             res.append(td)
     return res
 
 
-def count(qur):
-    global w, b
+def count(qur, w, b):
     for i in qur:
         if 1 not in i:
             w += 1
         elif 0 not in i:
             b += 1
         else:
-            count(divi(i, k // 2))
+            count(divi(i), w, b)
     print(w, b)
 
 
-count(draw)
+print(divi(draw))
+count(divi(draw), 0, 0)
