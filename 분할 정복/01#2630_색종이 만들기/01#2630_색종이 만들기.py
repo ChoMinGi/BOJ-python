@@ -16,7 +16,7 @@ def divi(a):
         for j in range(2):
             td = []
             for l in range(len(a) // 2):
-                td += a[4 * i + l][4 * j : 4 * (j + 1)]
+                td += a[4 * j : 4 * (j + 1)]
             res.append(td)
     return res
 
