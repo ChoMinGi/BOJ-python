@@ -4,7 +4,7 @@ p= 1000000007
 def factorial(N):
     n=1
     for i in range(2,N+1):
-        n*=i%p
+        n=(n*i)%p
     return n
 
 def expdiv(n,e):
@@ -13,13 +13,14 @@ def expdiv(n,e):
     elif e==1:
         return n
     else:
+        td=expdiv(n,e//2)
         if e%2:
-            return expdiv(n,e//2)*n%p
+            return td*td*n%p
         else:
-            return expdiv(n,e//2)%p
+            return td*td%p
     
 top = factorial(n)
-bottom = expdiv(factorial(n-k)*factorial(k),p-2)
+bottom = factorial(n-k)*factorial(k)%p
 
-print(top*bottom%p)
+print(top*expdiv(bottom,p-2)%p)
 
