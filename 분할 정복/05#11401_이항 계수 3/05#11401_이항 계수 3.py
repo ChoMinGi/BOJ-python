@@ -19,8 +19,8 @@ def expdiv(n,e):
         else:
             return td*td%p
     
-top = factorial(n)
-bottom = factorial(n-k)*factorial(k)%p
+top = factorial(n)%p
+bottom = expdiv(factorial(n-k)*factorial(k)%p,p-2)
 
-print(top*expdiv(bottom,p-2)%p)
+print(top*bottom%p)
 
