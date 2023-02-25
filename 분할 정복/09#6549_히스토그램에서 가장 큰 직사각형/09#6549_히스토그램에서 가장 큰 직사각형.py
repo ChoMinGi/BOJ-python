@@ -1,3 +1,5 @@
+# 분할 정복 풀이 (그리디)
+
 import sys
 input = sys.stdin.readline
 

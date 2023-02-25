@@ -1,31 +1,32 @@
+# 스택 풀이
+
 import sys
-from collections import deque
 input = sys.stdin.readline
 
 def stack(list):
-    cnt=0
-    rec=deque()
+
+    rec=[]
     recMA=0
 
-    for i in list[1:]:
-        while len(rec)>0:
-            ltd=rec[-1]
-            if i < ltd[1]:
-                rec.pop()
-                recMA=max(recMA, (cnt-ltd[0])*ltd[1], (ltd[0]-len(rec)+1)*ltd[1] )
-        cnt+=1
-        rec.append([cnt,i])
-    cnt+=1
+    for h in list:
+        cnt = 0
+        while len(rec) != 0 and rec[-1][1] > h:
+            # cnt는 현재 높이의 히스토그램이 앞으로 총 몇칸이 유효한지를 나타낸다.
+            cnt += rec[-1][0]
+            recMA = max(recMA, cnt * rec[-1][1])
+            rec.pop()
 
-    while len(rec)>1 :
-        pos=rec.pop()
-        recMA=max(recMA, (cnt-pos[0])*pos[1], (pos[0]*pos[1]))
-    
-    j=rec.pop()
-    recMA=max(recMA, (cnt-j[0])*j[1])
+        cnt += 1
+        rec.append([cnt,h])
+
+    cnt = 0
+    while len(rec) != 0:
+        cnt += rec[-1][0]
+        recMA = max(recMA, cnt*rec[-1][1])
+        rec.pop()
 
     return recMA
-                
+
 while 1:
     tc = list(map(int, input().split()))
     if tc[0]==0:
