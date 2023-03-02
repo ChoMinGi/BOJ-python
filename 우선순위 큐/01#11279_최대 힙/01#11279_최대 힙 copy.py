@@ -1,5 +1,4 @@
 import sys
-import heapq
 
 input = sys.stdin.readline
 
@@ -9,8 +8,8 @@ for i in range(n):
     td = int(input())
     if td == 0:
         if len(a) != 0:
-            print(-heapq.heappop(a))
+            print(a.pop(a.index(max(a))))
         else:
             print("0")
     else:
-        heapq.heappush(a, -td)
+        a.append(td)
