@@ -1,24 +1,24 @@
 import sys
-from heapq import heapify
+
 input = sys.stdin.readline
 
-def filecombine(list):
-    if len(list)<=2:
-        return sum(list)
-    elif len(list)//2:
-        heapify(list)
-        return filecombine(list[:-1])+list[-1]
-    else:
-        td=len(list)//2
-        if td//2:
-            return filecombine(list[:td-1])+filecombine(list[td-1:])
-    
+t = int(input())
+for __ in range(t):
+    k = int(input())
+    page = list(map(int, input().split()))
 
+    table = [[0] * k for _ in range(k)]
+    for i in range(k - 1):
+        table[i][i + 1] = page[i] + page[i + 1]
+        for j in range(i + 2, k):
+            table[i][j] = table[i][j - 1] + page[j]
+    print(table)
+    for d in range(2, k):  # diagonal
+        for i in range(k - d):
+            j = i + d
+            minimum = [table[i][k] + table[k + 1][j] for k in range(i, j)]
+            table[i][j] += min(minimum)
+            print(i, j)
+    print(table)
 
-
-
-T=int(input())
-for i in range(T):
-    K=int(input())
-    size=list(map(int,input().split()))
-    print(filecombine(size))
+    print(table[0][k - 1])
