@@ -12,13 +12,10 @@ for __ in range(t):
         table[i][i + 1] = page[i] + page[i + 1]
         for j in range(i + 2, k):
             table[i][j] = table[i][j - 1] + page[j]
-    print(table)
     for d in range(2, k):  # diagonal
         for i in range(k - d):
             j = i + d
             minimum = [table[i][k] + table[k + 1][j] for k in range(i, j)]
             table[i][j] += min(minimum)
             print(i, j)
-    print(table)
-
     print(table[0][k - 1])
