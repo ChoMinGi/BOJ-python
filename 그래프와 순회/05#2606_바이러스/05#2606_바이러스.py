@@ -12,11 +12,25 @@ for _ in range(k):
     graph[a].append(b)
     graph[b].append(a)
 
-print(graph)
+visited = [0] * (n + 1)
 
-check = 
+check = 0
+
 
 def dfs(s):
+    q = deque()
+    visited[s] = 1
+    q.append(s)
+    global check
+    while q:
+        td = q.popleft()
+        for i in graph[td]:
+            if visited[i] == 0:
+                check += 1
+                visited[i] = 1
+                q.append(i)
 
 
 dfs(1)
+
+print(check)
